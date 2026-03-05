@@ -1,0 +1,433 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Servio – Find Trusted Services in Bono Region</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+  </head>
+  <body>
+    <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="#" class="logo">
+          <!-- <div class="logo-icon">🔧</div> -->
+          <span class="logo-text"><span>Servio</span></span>
+        </a>
+
+        <!-- Desktop navigation links -->
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#providers">Providers</a></li>
+          <li><a href="#how-it-works">How it Works</a></li>
+          <li>
+            <a href="#join"
+              ><button
+                class="btn btn-primary"
+                style="padding: 10px 20px; font-size: 13px"
+              >
+                List Your Business
+              </button></a
+            >
+          </li>
+        </ul>
+
+        <!-- Hamburger button — only shows on mobile -->
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ============================================================
+       HERO SECTION
+       ============================================================ -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-inner">
+          <!-- Left side: headline and stats -->
+          <div>
+            <div class="hero-eyebrow fade-up">
+              Serving Bono &amp; Bono East Region
+            </div>
+
+            <h1 class="fade-up">
+              Find Trusted <span>Handymen</span> &amp; Service Providers Near
+              You
+            </h1>
+
+            <p class="hero-desc fade-up">
+              Connect with verified electricians, plumbers, tailors, mechanics
+              and more — right here in Sunyani, Berekum, Techiman and beyond.
+            </p>
+
+            <!-- Stats row -->
+            <div class="hero-stats fade-up">
+              <div class="stat-item">
+                <div class="stat-number" id="totalProviders">0</div>
+                <div class="stat-label">Providers Listed</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Regions Covered</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">Free</div>
+                <div class="stat-label">To Search</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side: search card -->
+          <div class="search-card" id="search-card">
+            <h2>🔍 Find a <span>Service Provider</span></h2>
+
+            <div class="search-grid">
+              <!-- Service input — full width -->
+              <div class="full-width">
+                <label class="field-label" for="serviceInput"
+                  >What service do you need?</label
+                >
+                <input
+                  class="search-input"
+                  id="serviceInput"
+                  type="text"
+                  placeholder="e.g. Plumber, Electrician, Tailor..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <!-- Region dropdown -->
+              <div>
+                <label class="field-label" for="regionSelect">Region</label>
+                <div class="select-wrapper">
+                  <select class="search-select" id="regionSelect">
+                    <option value="">All Regions</option>
+                    <option value="bono">Bono Region</option>
+                    <option value="bono-east">Bono East Region</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- District dropdown — updates based on region selected -->
+              <div>
+                <label class="field-label" for="districtSelect"
+                  >District / Town</label
+                >
+                <div class="select-wrapper">
+                  <select class="search-select" id="districtSelect">
+                    <option value="">All Districts</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-primary search-btn" id="searchBtn">
+              Find Providers
+            </button>
+          </div>
+
+          <!-- <div class="image-hero">
+            <img src="img/hero.png" alt="" />
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       CATEGORIES SECTION
+       ============================================================ -->
+    <section class="categories" id="services">
+      <div class="container">
+        <h2 class="section-title">Browse by Category</h2>
+        <p class="section-sub">Tap a category to filter providers instantly</p>
+
+        <!--
+        data-category attribute is used by JavaScript to filter providers.
+        The value must match the "category" field in the providers data below.
+      -->
+        <div class="categories-grid" id="categoriesGrid">
+          <div class="category-card" data-category="all">
+            <div class="cat-icon">🏠</div>
+            <div class="cat-name">All</div>
+            <div class="cat-count" id="count-all">0 providers</div>
+          </div>
+          <div class="category-card" data-category="electrical">
+            <div class="cat-icon">⚡</div>
+            <div class="cat-name">Electrical</div>
+            <div class="cat-count" id="count-electrical">0 providers</div>
+          </div>
+          <div class="category-card" data-category="plumbing">
+            <div class="cat-icon">🔧</div>
+            <div class="cat-name">Plumbing</div>
+            <div class="cat-count" id="count-plumbing">0 providers</div>
+          </div>
+          <div class="category-card" data-category="tailoring">
+            <div class="cat-icon">🪡</div>
+            <div class="cat-name">Tailoring</div>
+            <div class="cat-count" id="count-tailoring">0 providers</div>
+          </div>
+          <div class="category-card" data-category="mechanics">
+            <div class="cat-icon">🚗</div>
+            <div class="cat-name">Mechanics</div>
+            <div class="cat-count" id="count-mechanics">0 providers</div>
+          </div>
+          <div class="category-card" data-category="photography">
+            <div class="cat-icon">📸</div>
+            <div class="cat-name">Photography</div>
+            <div class="cat-count" id="count-photography">0 providers</div>
+          </div>
+          <div class="category-card" data-category="carpentry">
+            <div class="cat-icon">🪵</div>
+            <div class="cat-name">Carpentry</div>
+            <div class="cat-count" id="count-carpentry">0 providers</div>
+          </div>
+          <div class="category-card" data-category="catering">
+            <div class="cat-icon">🍽️</div>
+            <div class="cat-name">Catering</div>
+            <div class="cat-count" id="count-catering">0 providers</div>
+          </div>
+          <div class="category-card" data-category="cleaning">
+            <div class="cat-icon">🧹</div>
+            <div class="cat-name">Cleaning</div>
+            <div class="cat-count" id="count-cleaning">0 providers</div>
+          </div>
+          <div class="category-card" data-category="phone-repair">
+            <div class="cat-icon">📱</div>
+            <div class="cat-name">Phone Repair</div>
+            <div class="cat-count" id="count-phone-repair">0 providers</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       PROVIDERS SECTION
+       ============================================================ -->
+    <section class="providers" id="providers">
+      <div class="container">
+        <div class="providers-header">
+          <div>
+            <h2 class="section-title">Service Providers</h2>
+            <p class="section-sub" style="margin-bottom: 0">
+              Verified professionals in your area
+            </p>
+          </div>
+          <div class="result-count" id="resultCount">Showing all providers</div>
+        </div>
+
+        <!--
+        Provider cards are injected here by JavaScript.
+        We do not hardcode them in HTML — the JS reads the
+        providers data array and builds the cards dynamically.
+        This means adding a new provider = adding one object to the array.
+      -->
+        <div class="providers-grid" id="providersGrid">
+          <!-- No results message — hidden by default, shown by JS -->
+          <div class="no-results" id="noResults">
+            <div class="no-results-icon">🔍</div>
+            <h3>No providers found</h3>
+            <p>
+              We don't have anyone for that search yet.<br />Be the first to
+              list your business!
+            </p>
+            <a href="#join"
+              ><button class="btn btn-primary">
+                List Your Business Free
+              </button></a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       HOW IT WORKS
+       ============================================================ -->
+    <section class="how-it-works" id="how-it-works">
+      <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-sub">Simple. Fast. Free to search.</p>
+
+        <div class="steps-grid">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Search a Service</h3>
+            <p>
+              Type what you need — plumber, electrician, tailor — and select
+              your district
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Browse Providers</h3>
+            <p>
+              See verified providers near you with their ratings, services and
+              location
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Contact Directly</h3>
+            <p>
+              Call or message directly on WhatsApp — no middleman, no booking
+              fees
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <h3>Get It Done</h3>
+            <p>
+              Meet your provider, get the job done, and leave a review to help
+              others
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       JOIN / LIST YOUR BUSINESS
+       ============================================================ -->
+    <section class="join-section" id="join">
+      <div class="container">
+        <div class="join-card">
+          <div class="join-icon">🛠️</div>
+          <h2>Are You a Service Provider?</h2>
+          <p>
+            List your business on GHHandyman and reach thousands of people in
+            Bono and Bono East Region looking for your services. Basic listing
+            is <strong>completely free.</strong>
+          </p>
+
+          <!-- Join form -->
+          <form class="join-form" id="joinForm">
+            <div class="form-row">
+              <div>
+                <label class="field-label" for="joinName">Your Full Name</label>
+                <input
+                  class="search-input"
+                  id="joinName"
+                  type="text"
+                  placeholder="Kwame Asante"
+                  required
+                />
+              </div>
+              <div>
+                <label class="field-label" for="joinPhone"
+                  >Phone / WhatsApp</label
+                >
+                <input
+                  class="search-input"
+                  id="joinPhone"
+                  type="tel"
+                  placeholder="0244 000 000"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="field-label" for="joinService"
+                >Your Service / Trade</label
+              >
+              <input
+                class="search-input"
+                id="joinService"
+                type="text"
+                placeholder="e.g. Electrician"
+                required
+              />
+            </div>
+
+            <div class="form-row">
+              <div>
+                <label class="field-label" for="joinRegion">Your Region</label>
+                <div class="select-wrapper">
+                  <select class="search-select" id="joinRegion" required>
+                    <option value="">Select Region</option>
+                    <option value="bono">Bono Region</option>
+                    <option value="bono-east">Bono East Region</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label class="field-label" for="joinTown">Your Town</label>
+                <input
+                  class="search-input"
+                  id="joinTown"
+                  type="text"
+                  placeholder="e.g. Sunyani"
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary search-btn">
+              🚀 Submit My Listing — It's Free
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <a href="#" class="logo footer-logo">
+              <!-- <div class="logo-icon">🔧</div> -->
+              <span class="logo-text"><span>Servio</span></span>
+            </a>
+            <p>
+              Connecting people in Bono and Bono East Region with trusted local
+              service providers. Built right here in Sunyani.
+            </p>
+          </div>
+
+          <div>
+            <h4>Services</h4>
+            <ul class="footer-links">
+              <li><a href="#">Electrical</a></li>
+              <li><a href="#">Plumbing</a></li>
+              <li><a href="#">Tailoring</a></li>
+              <li><a href="#">Mechanics</a></li>
+              <li><a href="#">Photography</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Company</h4>
+            <ul class="footer-links">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#join">List Your Business</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>&copy; 2025 GHHandyman. All rights reserved.</span>
+          <span class="made-in">Servio Made in Sunyani, Ghana</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Toast notification element -->
+    <div class="toast" id="toast"></div>
+
+    <script src="{% static 'JS/main.js' %}"></script>
+  </body>
+</html>

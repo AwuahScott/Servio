@@ -1,0 +1,161 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Provider Login – Servio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: #f7fbf8;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .card {
+        background: white;
+        border-radius: 16px;
+        padding: 40px;
+        width: 100%;
+        max-width: 420px;
+        box-shadow: 0 8px 40px rgba(26, 122, 74, 0.12);
+        border: 1.5px solid #d4e6da;
+      }
+      .logo {
+        text-align: center;
+        margin-bottom: 28px;
+      }
+      .logo-icon {
+        font-size: 36px;
+        display: block;
+        margin-bottom: 8px;
+      }
+      h1 {
+        font-family: "Sora", sans-serif;
+        font-size: 22px;
+        color: #111a14;
+        text-align: center;
+        margin-bottom: 6px;
+      }
+      .subtitle {
+        text-align: center;
+        color: #4a5e51;
+        font-size: 14px;
+        margin-bottom: 28px;
+      }
+      label {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: #4a5e51;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 6px;
+        font-family: "Sora", sans-serif;
+      }
+      input {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1.5px solid #d4e6da;
+        border-radius: 8px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 15px;
+        margin-bottom: 16px;
+        transition: border-color 0.2s;
+      }
+      input:focus {
+        outline: none;
+        border-color: #1a7a4a;
+        box-shadow: 0 0 0 3px rgba(26, 122, 74, 0.1);
+      }
+      button {
+        width: 100%;
+        padding: 14px;
+        background: #1a7a4a;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-family: "Sora", sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      button:hover {
+        background: #145c38;
+      }
+      .error {
+        background: #ffeaea;
+        border: 1px solid #ffb3b3;
+        color: #c0392b;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 14px;
+        margin-bottom: 16px;
+        text-align: center;
+      }
+      .back {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 14px;
+        color: #4a5e51;
+      }
+      .back a {
+        color: #1a7a4a;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="logo">
+        <span class="logo-icon">🔧</span>
+        <h1>Provider Login</h1>
+        <p class="subtitle">Sign in to manage your Servio profile</p>
+      </div>
+
+      {% if error %}
+      <div class="error">❌ {{ error }}</div>
+      {% endif %}
+
+      <form method="POST">
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="provider_0244..."
+          required
+        />
+
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Your password"
+          required
+        />
+
+        <button type="submit">🔐 Sign In</button>
+      </form>
+
+      <div class="back">
+        <a href="/">← Back to Servio</a>
+      </div>
+    </div>
+  </body>
+</html>
