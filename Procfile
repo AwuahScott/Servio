@@ -1,0 +1,1 @@
+web: gunicorn servio_backend.wsgi
