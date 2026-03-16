@@ -225,15 +225,19 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
-#STATIC_ROOT = BASE_DIR / 'staticfiles'  # Where collected static files go
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # This is where your dev static files are
+]
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # This is where collected files go
 
-# WhiteNoise compression and caching
+# WhiteNoise configuration
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Media files (uploaded images)
-MEDIA_URL = '/media/'
+# Media files
+
+import os
+MEDIA_URL  = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Security settings for production
