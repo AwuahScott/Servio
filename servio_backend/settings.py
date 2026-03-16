@@ -226,8 +226,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']  # Where your dev static files are
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Where collected static files go
+STATICFILES_DIRS = [BASE_DIR / 'static']
+#STATIC_ROOT = BASE_DIR / 'staticfiles'  # Where collected static files go
 
 # WhiteNoise compression and caching
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
