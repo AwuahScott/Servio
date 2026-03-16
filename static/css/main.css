@@ -211,7 +211,7 @@ a {
        ============================================================ */
 .hero {
   background:
-    linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%),
+    linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%),
     url("/static/img/afro-woman.jpg") no-repeat center/cover;
   padding: 80px 0 60px;
   color: var(--white);
