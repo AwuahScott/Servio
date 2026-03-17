@@ -1,1 +1,1 @@
-web: python manage.py collectstatic --noinput && gunicorn servio_backend.wsgi
+web: gunicorn servio_backend.wsgi
